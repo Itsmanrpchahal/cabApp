@@ -7,4 +7,5 @@ export default {
   icStar: require('../assets/images/star.png'),
   icLight: require('../assets/images/light.png'),
   icInfo: require('../assets/images/info.png'),
+  icMan: require('../assets/images/man.png'),
 };

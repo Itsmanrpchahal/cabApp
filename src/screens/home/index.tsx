@@ -5,6 +5,7 @@ import axios from 'axios';
 import {View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
 import {useActions} from '../../hooks/useActions';
 import {useTypedSelector} from '../../hooks/useTypedSelector';
+import imagePath from '../../navigation';
 
 const HomeScreen = () => {
   const isFocused = useIsFocused();
@@ -15,33 +16,21 @@ const HomeScreen = () => {
   const data = [];
   const [pages, setPages] = useState(1);
 
-  const {homeData, homeLoading} = useTypedSelector(state => state.homeData);
-
-  const handleLoad = () => {
-    setPages(pages + 1);
-  };
-
   useEffect(() => {
     if (count <= pages) {
       getHome({
         page: count,
       }).then(res => {
         setPages(res.data.total_pages);
-        res.data && setList(res.data.data);
+        res.data && setList(...res.data.data);
         res.data && setList([...list, ...res.data.data]);
         data.push([...data, res.data.data]);
-        console.log(JSON.stringify(data));
       });
     }
   }, [count]);
 
-  useEffect(() => {
-    // list.push(homeData);
-  });
-
   return (
     <MainContainer>
-      <Text style={{color: '#000000'}}>{homeLoading}</Text>
       <FlatList
         data={list}
         keyExtractor={item => item.id}
@@ -62,33 +51,47 @@ const HomeScreen = () => {
         }}
         renderItem={({item}) => {
           return (
-            <MainBox>
-              <Box>
-                <Hours>
-                  <Text>13:00</Text>
-                  <Text>2h</Text>
-                  <Text>15:00</Text>
-                </Hours>
-                <Place>
-                  <Text>Ziarkpur</Text>
-                  <Text>{JSON.stringify(item)}</Text>
-                </Place>
-                <BIO_Con>
-                  <USER></USER>
-
-                  <PriceMain>
-                    <Price>
-                      <Text>Rs.250</Text>
-                    </Price>
-                  </PriceMain>
-                </BIO_Con>
-                <Time></Time>
-              </Box>
-              {/* <ImgStyle source={{uri: `${item.avatar}`}} /> */}
-            </MainBox>
+            <HorizontalWrapper>
+              <VerticalWrapper>
+                <TextWrapper>13:00</TextWrapper>
+                <TextWrapper0>2h40</TextWrapper0>
+                <TextWrapper>15:40</TextWrapper>
+                <ProfilePic source={{uri: item.avatar}} />
+              </VerticalWrapper>
+              <VerticalWrapper2>
+                <TextWrapper2>Zirakpur</TextWrapper2>
+                <EmojisView>
+                  <ImageView1 source={imagePath.icWalk} />
+                  <ImageView1 source={imagePath.icWalk} />
+                </EmojisView>
+                <TextWrapLudView>
+                  <TextWrapper2>Ludhiana</TextWrapper2>
+                  <EmojisView>
+                    <ImageView1 source={imagePath.icWalk} />
+                    <ImageView1 source={imagePath.icWalk} />
+                  </EmojisView>
+                </TextWrapLudView>
+                <NameWrapper>
+                  <TextWrapper2>{item.first_name}</TextWrapper2>
+                  <GradeView>
+                    <Star source={imagePath.icStar} />
+                    <Point>3.8</Point>
+                  </GradeView>
+                </NameWrapper>
+              </VerticalWrapper2>
+              <PriceTag>
+                <PriceWrapper>
+                  <Line></Line>
+                  <TextWrapper> Rs.250:00</TextWrapper>
+                </PriceWrapper>
+                <InfoView>
+                  <LightningPic source={imagePath.icLight} />
+                  <InfoPic source={imagePath.icInfo} />
+                </InfoView>
+              </PriceTag>
+            </HorizontalWrapper>
           );
         }}
-        onEndReached={handleLoad}
         onEndReachedThreshold={0.5}
       />
     </MainContainer>
@@ -97,88 +100,139 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const Place = styled.View``;
+const Line = styled.View``;
 
-const Box = styled.View``;
+const PriceWrapper = styled.View`
+  margin-bottom: 100px;
+`;
 
-const ImgStyle = styled.Image`
-  width: 45px;
-  height: 45px;
-  margin-left: 20px;
-  margin-bottom: 20px;
+const PriceTag = styled.View``;
+
+const InfoPic = styled.Image`
+  background-color: white;
+  height: 20px;
+  width: 20px;
+  border-radius: 25px;
+  margin-left: 13px;
+`;
+
+const LightningPic = styled.Image`
+  background-color: white;
+  height: 20px;
+  width: 20px;
   border-radius: 25px;
 `;
 
-const Hours = styled.View`
-  margin-left: 20px;
-  margin-bottom: 20px;
+const InfoView = styled.View`
+  flex-direction: row;
+  margin-left: 15px;
+  margin-top: 20px;
 `;
 
-const ImgContainer = styled.View`
-  padding: 10px;
+const TextWrapLudView = styled.View`
+  margin-top: 9px;
 `;
 
-const Main = styled.View`
-  background-color: black;
-`;
-const Detail = styled.Text`
-  font-size: 15px;
-  color: #fff;
-  margin-left: 12px;
-  margin-bottom: 12px;
-`;
-
-const Time = styled.View`
-  width: 100%;
-  margin-bottom: 20px;
-  padding-top: 16px;
+const Star = styled.Image`
+  background-color: white;
   border-radius: 20px;
-  background-color: #2a2728;
+  height: 18px;
+  width: 18px;
+`;
+
+const Point = styled.Text`
+  margin-left: 10px;
+`;
+
+const GradeView = styled.View`
+  flex-direction: row;
+  margin-left: 8px;
+  margin-top: 5px;
+`;
+
+const NameWrapper = styled.View`
+  margin-top: 20px;
+  margin-right: 2px;
+`;
+
+const TextWrapper0 = styled.Text`
+  font-size: 14px;
+  margin-left: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
+
+const ProfilePic = styled.Image`
+  background-color: white;
+  border-radius: 25px;
+  margin-top: 40px;
+  height: 50px;
+  width: 50px;
+`;
+
+const ImageView1 = styled.Image`
+  background-color: white;
+  width: 12px;
+  height: 21px;
+  width: 21px;
+  border-radius: 10px;
+  margin-right: 5px;
+  margin-left: 8px;
+`;
+
+const EmojisView = styled.View`
+  flex-direction: row;
+  margin-top: 5px;
+`;
+
+const VerticalWrapper2 = styled.View`
+  width: 40%;
+  margin-right: 40px;
+`;
+
+const VerticalWrapper = styled.View`
+  width: 10%;
+  margin-right: 80px;
+`;
+
+const TextWrapper2 = styled.Text`
   display: flex;
-  justify-content: center;
-`;
-
-const PriceMain = styled.Text`
-  font-size: 15px;
-  color: #fff;
-`;
-
-const Price = styled.View`
+  margin: 1px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 17px;
   margin-right: 90px;
+  color: white;
 `;
 
-const USER = styled.Text`
-  font-size: 30px;
-
-  color: #2a2728;
-`;
-
-const BIO_Con = styled.View`
-  width: 74%;
+const TextWrapper1 = styled.Text`
+  width: 10%;
   display: flex;
+  margin: 1px;
+  font-weight: bold;
+`;
+
+const TextWrapper = styled.Text`
+  display: flex;
+  margin: 1px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+`;
+
+const HorizontalWrapper = styled.View`
   flex-direction: row;
   align-items: center;
-  border-radius: 20px;
-  justify-content: space-between;
-  background-color: #2a2728;
-  padding-vertical: 10px;
+  background-color: #252525;
+  border-radius: 10px;
+  margin: 8px; 8px; 0px; 8px;
+  padding:8px;
 `;
 
-const MainBox = styled.View`
-  width: 80%;
-  margin-left: 20px;
-  background-color: #2a2728;
-  border-radius: 20px;
-  margin-vertical: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
 const MainContainer = styled.View`
-  align-items: center;
-  background-color: #ffff;
-`;
-
-const Load = styled.View`
-  margin-top: 320px;
+  // align-items: center;
+  // background-color: black;
+  // border-radius: 10px;
+  // margin: 8px; 8px; 0px; 8px;
+  // padding:8px;
 `;

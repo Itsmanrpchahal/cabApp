@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import imagePath from '../../navigation';
 import {SwipeListView} from 'react-native-swipe-list-view';
+import navigationStrings from '../../constant/navigationStrings';
 
 const listItems = [
   {
@@ -35,7 +36,7 @@ const listItems = [
   },
 ];
 
-const ProfileScreen = () => {
+const ProfileScreen = ({navigation}) => {
   return (
     <MainContainer>
       <HorizontalWrapper>
@@ -62,10 +63,12 @@ const ProfileScreen = () => {
         <BioInfoText>Follow me on LinkedIn</BioInfoText>
       </BioInfoContainer>
       <EditProfile>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate(navigationStrings.EDIT_PROFILE)}>
           <EditProfileText>Edit Profile</EditProfileText>
         </TouchableOpacity>
       </EditProfile>
+
       <FlatList
         data={listItems}
         renderItem={({item}) => {
@@ -81,8 +84,6 @@ const ProfileScreen = () => {
             </HorizontalCard>
           );
         }}
-        leftOpenValue={75}
-        rightOpenValue={-150}
       />
     </MainContainer>
   );

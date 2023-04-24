@@ -3,11 +3,12 @@ import {Image, TouchableOpacity} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/home';
 import MessageScreen from '../screens/message';
-import ProfileScreen from '../screens/profile';
 import {TabBarIcon} from '../navigation/TabbarIcon';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import EditProfile from '../screens/editProfile';
 import navigationStrings from '../constant/navigationStrings';
+import {ProfileStack} from '../StackScreens';
+import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +20,7 @@ const Tabs = () => {
         tabBarIcon: ({color}) => (
           <TabBarIcon color={color} routeName={route.name} />
         ),
+        headerShown: false,
         tabBarActiveTintColor: '#ffff',
         headerStyle: {backgroundColor: '#252525'},
         tabBarStyle: {backgroundColor: '#252525'},
@@ -38,11 +40,16 @@ const Tabs = () => {
         component={MessageScreen}
       />
       <Tab.Screen
-        options={{
+        options={({route}) => ({
+          tabBarStyle: {
+            backgroundColor: 'black',
+
+            display: getTabBarVisibility(route),
+          },
           headerTitleStyle: {color: 'white'},
-        }}
+        })}
         name={navigationStrings.PROFILE}
-        component={ProfileScreen}
+        component={ProfileStack}
       />
       <Tab.Screen
         name="Edit Profile"
@@ -56,6 +63,17 @@ const Tabs = () => {
       />
     </Tab.Navigator>
   );
+};
+
+const getTabBarVisibility = route => {
+  console.log(route);
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
+  console.log(routeName);
+  if (routeName === 'Edit Profile') {
+    return 'none';
+  } else {
+    return 'flex';
+  }
 };
 
 export default Tabs;

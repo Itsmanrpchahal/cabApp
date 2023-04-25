@@ -20,7 +20,6 @@ const Tabs = () => {
         tabBarIcon: ({color}) => (
           <TabBarIcon color={color} routeName={route.name} />
         ),
-        headerShown: false,
         tabBarActiveTintColor: '#ffff',
         headerStyle: {backgroundColor: '#252525'},
         tabBarStyle: {backgroundColor: '#252525'},

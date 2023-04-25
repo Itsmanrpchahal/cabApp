@@ -12,6 +12,7 @@ import {MainStackScreen} from './src/StackScreens';
 import {EventRegister} from 'react-native-event-listeners';
 import {Theme} from './src/theme/theme';
 import ThemeContext from './src/theme/themeContext';
+import Tabs from './src/tabs';
 const AppWrapper = () => {
   return (
     <Provider store={store}>
@@ -35,7 +36,7 @@ const App = () => {
   return (
     <ThemeContext.Provider value={darkMode === true ? Theme.dark : Theme.light}>
       <NavigationContainer theme={darkMode === true ? DarkTheme : LightTheme}>
-        <MainStackScreen />
+        <Tabs />
       </NavigationContainer>
     </ThemeContext.Provider>
   );

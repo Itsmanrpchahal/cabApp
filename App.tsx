@@ -22,6 +22,7 @@ const AppWrapper = () => {
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
+
   useEffect(() => {
     const listener = EventRegister.addEventListener('ChangeTheme', data => {
       setDarkMode(data);
@@ -31,10 +32,6 @@ const App = () => {
       EventRegister.removeAllListeners(listener);
     };
   }, [darkMode]);
-
-  const themes = useColorScheme();
-
-  const Stack = createNativeStackNavigator();
 
   return (
     <ThemeContext.Provider value={darkMode === true ? Theme.dark : Theme.light}>

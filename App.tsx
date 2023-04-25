@@ -6,7 +6,8 @@ import {
   DarkTheme,
 } from '@react-navigation/native';
 import {Provider} from 'react-redux';
-import {store} from '../MyApp/src/store/store';
+import { LogBox } from 'react-native';
+import {store} from './src/store/store';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {MainStackScreen} from './src/StackScreens';
 import {EventRegister} from 'react-native-event-listeners';
@@ -24,6 +25,8 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
+    LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
     const listener = EventRegister.addEventListener('ChangeTheme', data => {
       setDarkMode(data);
     });

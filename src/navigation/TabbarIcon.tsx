@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {Image} from 'react-native';
-import {icHome, icMessage, icProfile} from '../assets';
+import {icHome, icMessage, icProfile,icEmail} from '../assets';
 import navigationStrings from '../constant/navigationStrings';
 
 const tabIcon = {

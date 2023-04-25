@@ -98,7 +98,7 @@ const TextGallery = styled.Text`
 
 const MainContainer = styled.View`
   flex: 1;
-  background-color: black;
+  background-color: #ffffff;
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;

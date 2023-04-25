@@ -1,8 +1,6 @@
 import {View, Text, StyleSheet} from 'react-native';
 import React, {useContext} from 'react';
-import {SwipeListView} from 'react-native-swipe-list-view';
-import styled from 'styled-components';
-import {withTheme} from 'styled-components';
+import styled from 'styled-components/native';
 import ThemeContext from '../../theme/themeContext';
 
 const MessageScreen = () => {

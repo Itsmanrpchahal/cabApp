@@ -1,12 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import styled from 'styled-components/native';
 import {useIsFocused} from '@react-navigation/native';
-import axios from 'axios';
 import {View, Text, FlatList, Image, ActivityIndicator} from 'react-native';
 import {useActions} from '../../hooks/useActions';
-import {useTypedSelector} from '../../hooks/useTypedSelector';
 import imagePath from '../../navigation';
-
 const HomeScreen = () => {
   const isFocused = useIsFocused();
 
@@ -58,7 +55,14 @@ const HomeScreen = () => {
                 <TextWrapper>15:40</TextWrapper>
                 <ProfilePic source={{uri: item.avatar}} />
               </VerticalWrapper>
-              <VerticalWrapper2>
+             
+              <LineWrapper>
+              <DividerPic source ={imagePath.icCirlce}/>
+              <Line>
+              </Line>
+              <DividerPic source ={imagePath.icCirlce}/>
+              </LineWrapper>
+              <VerticalWrapper>
                 <TextWrapper2>Zirakpur</TextWrapper2>
                 <EmojisView>
                   <ImageView1 source={imagePath.icWalk} />
@@ -78,10 +82,9 @@ const HomeScreen = () => {
                     <Point>3.8</Point>
                   </GradeView>
                 </NameWrapper>
-              </VerticalWrapper2>
+              </VerticalWrapper>
               <PriceTag>
                 <PriceWrapper>
-                  <Line></Line>
                   <TextWrapper> Rs.250:00</TextWrapper>
                 </PriceWrapper>
                 <InfoView>
@@ -100,13 +103,30 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const Line = styled.View``;
+const Line = styled.View`
+width:2px;
+height:50px;
+justify-content:center;
+background-color:white`;
+
+const DividerPic = styled.Image`
+  background-color: white;
+  border-radius: 25px;
+  height: 10px;
+  width: 10px;
+`;
+
+const LineWrapper = styled.View`
+align-items:center;
+`;
 
 const PriceWrapper = styled.View`
+width:auto;
   margin-bottom: 100px;
 `;
 
-const PriceTag = styled.View``;
+const PriceTag = styled.View`
+width:auto;`;
 
 const InfoPic = styled.Image`
   background-color: white;
@@ -185,14 +205,7 @@ const EmojisView = styled.View`
   margin-top: 5px;
 `;
 
-const VerticalWrapper2 = styled.View`
-  width: 40%;
-  margin-right: 40px;
-`;
-
 const VerticalWrapper = styled.View`
-  width: 10%;
-  margin-right: 80px;
 `;
 
 const TextWrapper2 = styled.Text`
@@ -201,16 +214,9 @@ const TextWrapper2 = styled.Text`
   text-align: center;
   font-weight: bold;
   font-size: 17px;
-  margin-right: 90px;
   color: white;
 `;
 
-const TextWrapper1 = styled.Text`
-  width: 10%;
-  display: flex;
-  margin: 1px;
-  font-weight: bold;
-`;
 
 const TextWrapper = styled.Text`
   display: flex;
@@ -222,17 +228,13 @@ const TextWrapper = styled.Text`
 
 const HorizontalWrapper = styled.View`
   flex-direction: row;
-  align-items: center;
   background-color: #252525;
   border-radius: 10px;
+  justify-content:space-between;
   margin: 8px; 8px; 0px; 8px;
   padding:8px;
 `;
 
 const MainContainer = styled.View`
-  // align-items: center;
-  // background-color: black;
-  // border-radius: 10px;
-  // margin: 8px; 8px; 0px; 8px;
-  // padding:8px;
+ 
 `;

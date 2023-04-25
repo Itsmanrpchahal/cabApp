@@ -11,19 +11,16 @@ import {ProfileStack} from '../StackScreens';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
-
 const Stack = createNativeStackNavigator();
 const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarIcon: ({color}) => (
-          <TabBarIcon color={color} routeName={route.name} />
+          <TabBarIcon  color={color} routeName={route.name} />
         ),
         headerShown: false,
-        tabBarActiveTintColor: '#ffff',
-        headerStyle: {backgroundColor: '#252525'},
-        tabBarStyle: {backgroundColor: '#252525'},
+       
       })}>
       <Tab.Screen
         options={{
@@ -41,11 +38,6 @@ const Tabs = () => {
       />
       <Tab.Screen
         options={({route}) => ({
-          tabBarStyle: {
-            backgroundColor: 'black',
-
-            display: getTabBarVisibility(route),
-          },
           headerTitleStyle: {color: 'white'},
         })}
         name={navigationStrings.PROFILE}

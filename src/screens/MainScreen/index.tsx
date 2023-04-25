@@ -1,6 +1,6 @@
 import {View, Text, Button, Switch, StyleSheet} from 'react-native';
 import React, {useEffect, useState, useContext} from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import {EventRegister} from 'react-native-event-listeners';
 import themeContext from '../../theme/themeContext';
 import navigationStrings from '../../constant/navigationStrings';

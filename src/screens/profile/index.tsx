@@ -1,8 +1,7 @@
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import imagePath from '../../navigation';
-import {SwipeListView} from 'react-native-swipe-list-view';
 import navigationStrings from '../../constant/navigationStrings';
 
 const listItems = [
@@ -43,18 +42,18 @@ const ProfileScreen = ({navigation}) => {
         <ProfilePicView>
           <ProfilePic source={imagePath.icProfile} />
         </ProfilePicView>
-        <PostView>
+        <ProfilePicView>
           <NumberPost>58</NumberPost>
           <TextPost>Posts</TextPost>
-        </PostView>
-        <FollowerView>
-          <NumberFollower>449</NumberFollower>
-          <TextFollower>Followers</TextFollower>
-        </FollowerView>
-        <FollowingView>
-          <NumberFollowing>736</NumberFollowing>
-          <TextFollowing>Following</TextFollowing>
-        </FollowingView>
+        </ProfilePicView>
+        <ProfilePicView>
+          <NumberPost>449</NumberPost>
+          <TextPost>Followers</TextPost>
+        </ProfilePicView>
+        <ProfilePicView>
+          <NumberPost>736</NumberPost>
+          <TextPost>Following</TextPost>
+        </ProfilePicView>
       </HorizontalWrapper>
       <BioInfoContainer>
         <BioInfoText>First_Name</BioInfoText>
@@ -91,7 +90,6 @@ const ProfileScreen = ({navigation}) => {
 
 export default ProfileScreen;
 
-const Container = styled.View``;
 
 const EditProfileText = styled.Text`
   color: white;
@@ -103,11 +101,6 @@ const EditProfile = styled.View`
   background-color: #252525;
   border-radius: 7px;
   margin: 8px; 5px; 0px; 5px;
-`;
-
-const Email = styled.Text`
-  margin-top: 6px;
-  font-size: 15px;
 `;
 
 const LastName = styled.Text`
@@ -155,58 +148,18 @@ const BioInfoContainer = styled.View`
   margin-top: 20px;
 `;
 
-const TextFollowing = styled.Text`
-  font-size: 20px;
-  color: white;
-`;
-
-const NumberFollowing = styled.Text`
-  display: flex;
-  margin-left: 20px;
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-`;
-
-const FollowingView = styled.View`
-  width: 25%;
-  margin-top: 30px;
-`;
-
-const TextFollower = styled.Text`
-  font-size: 20px;
-  color: white;
-`;
-
-const NumberFollower = styled.Text`
-  display: flex;
-  margin-left: 15px;
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-`;
-
-const FollowerView = styled.View`
-  width: 25%;
-  margin-top: 30px;
-`;
-
 const TextPost = styled.Text`
-  font-size: 20px;
+  font-size: 14px;
   color: white;
-`;
+  justify-content:center;
+  `;
 
 const NumberPost = styled.Text`
   display: flex;
   margin-left: 10px;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: bold;
   color: white;
-`;
-
-const PostView = styled.View`
-  width: 25%;
-  margin-top: 30px;
 `;
 
 const ProfilePic = styled.Image`
@@ -218,14 +171,16 @@ const ProfilePic = styled.Image`
 `;
 
 const ProfilePicView = styled.View`
-  width: 25%;
-  margin-left: 10px;
   margin-top: 20px;
+  justify-content:center;
+
 `;
 
 const HorizontalWrapper = styled.View`
   flex-direction: row;
   margin-top: 5px;
+  margin-right:8px;
+  justify-content:space-between;
 `;
 
 const MainContainer = styled.View`

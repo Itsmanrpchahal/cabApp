@@ -26,7 +26,6 @@ const App = () => {
   useEffect(() => {
     const listener = EventRegister.addEventListener('ChangeTheme', data => {
       setDarkMode(data);
-      // console.log(data);
     });
     return () => {
       EventRegister.removeAllListeners(listener);

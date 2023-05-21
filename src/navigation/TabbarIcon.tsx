@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import {Image} from 'react-native';
-import {icHome, icMessage, icProfile,icEmail} from '../assets';
+import {icHome, icMessage, icProfile, icEmail} from '../assets';
 import navigationStrings from '../constant/navigationStrings';
 
 const tabIcon = {
@@ -20,7 +20,7 @@ export const TabBarIcon: React.FC<TabBarIconProps> = ({color, routeName}) => {
     <Image
       accessibilityIgnoresInvertColors
       source={tabIcon[routeName]}
-      style={{tintColor: color}}
+      style={{tintColor: color, height: 25, width: 25}}
     />
   );
 };

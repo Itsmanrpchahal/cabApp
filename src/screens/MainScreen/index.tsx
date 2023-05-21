@@ -1,4 +1,6 @@
 import {View, Text, Button, Switch, StyleSheet} from 'react-native';
+// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, {useEffect, useState, useContext} from 'react';
 import styled from 'styled-components/native';
 import {EventRegister} from 'react-native-event-listeners';

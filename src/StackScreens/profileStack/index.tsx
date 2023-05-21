@@ -1,8 +1,10 @@
+// @ts-ignore
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import EditProfile from '../../screens/editProfile';
 import navigationStrings from '../../constant/navigationStrings';
 import ProfileScreen from '../../screens/profile';
+import {Image, TouchableOpacity} from 'react-native';
+import {icLogout} from '../../assets';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +21,7 @@ const ProfileStack = () => {
       />
       <Stack.Screen
         name={navigationStrings.EDIT_PROFILE}
-        component={EditProfile}
+        component={ProfileScreen}
       />
     </Stack.Navigator>
   );

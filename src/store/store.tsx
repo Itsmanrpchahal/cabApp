@@ -9,7 +9,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['homeData'],
+  whitelist: ['homeData', 'loginData'],
 };
 
 const middleWares = [thunk];

@@ -39,7 +39,7 @@ const reducer = (
         return draft;
       case ActionType.HOME_GET_FAILED:
         draft.homeLoading = false;
-        draft.error = action.payload;
+        draft.error = 'Somethings wents wrong';
         draft.homeData = action.payload;
         return draft;
       default:

@@ -1,26 +1,22 @@
+// @ts-ignore
 import React from 'react';
-import {Image, TouchableOpacity} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/home';
-import MessageScreen from '../screens/message';
 import {TabBarIcon} from '../navigation/TabbarIcon';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import EditProfile from '../screens/editProfile';
 import navigationStrings from '../constant/navigationStrings';
 import {ProfileStack} from '../StackScreens';
-import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
+import {Button, Image} from 'react-native';
+import imagePath from '../navigation';
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
 const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={({route}) => ({
         tabBarIcon: ({color}) => (
-          <TabBarIcon  color={color} routeName={route.name} />
+          <TabBarIcon color={color} routeName={route.name} />
         ),
         headerShown: false,
-       
       })}>
       <Tab.Screen
         options={{
@@ -29,43 +25,17 @@ const Tabs = () => {
         name={navigationStrings.HOME}
         component={HomeScreen}
       />
-      <Tab.Screen
-        options={{
-          headerTitleStyle: {color: 'white'},
-        }}
-        name={navigationStrings.MESSAGE}
-        component={MessageScreen}
-      />
+
       <Tab.Screen
         options={({route}) => ({
           headerTitleStyle: {color: 'white'},
+          headerShown: false,
         })}
         name={navigationStrings.PROFILE}
         component={ProfileStack}
       />
-      <Tab.Screen
-        name="Edit Profile"
-        component={EditProfile}
-        options={{
-          headerTitleStyle: {color: 'white'},
-          tabBarButton: () => (
-            <TouchableOpacity onPress={() => EditProfile()} />
-          ),
-        }}
-      />
     </Tab.Navigator>
   );
-};
-
-const getTabBarVisibility = route => {
-  console.log(route);
-  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
-  console.log(routeName);
-  if (routeName === 'Edit Profile') {
-    return 'none';
-  } else {
-    return 'flex';
-  }
 };
 
 export default Tabs;

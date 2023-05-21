@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
 import {ActionType} from '../../../store/home/actions-types';
 import {Action} from '../../../store/home/actions';
-import {apiUri} from '../../../service/apiEndPoints';
+import {apiUri, baseURL} from '../../../service/apiEndPoints';
 import service from '../../../service/axios';
 
 /**
@@ -13,10 +13,11 @@ export const getHome = (data: any) => {
       type: ActionType.HOME_INIT,
     });
     try {
-      console.log('count ' + JSON.stringify(data));
-      const response = await service.get(
-        'https://reqres.in/api/users?page=' + data.page,
-      );
+      const response = await service.post(baseURL + apiUri.auth.listApi, {
+        id: data.userid,
+        type: data.type,
+        page: data.page,
+      });
       dispatch({
         type: ActionType.HOME_GET_SUCCESS,
         payload: response.data,

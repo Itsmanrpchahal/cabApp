@@ -1,4 +1,3 @@
-import {View, Text, useColorScheme} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {
   NavigationContainer,
@@ -6,13 +5,13 @@ import {
   DarkTheme,
 } from '@react-navigation/native';
 import {Provider} from 'react-redux';
-import { LogBox } from 'react-native';
-import {store} from './src/store/store';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {LogBox} from 'react-native';
+import {store} from './src/store';
 import {MainStackScreen} from './src/StackScreens';
 import {EventRegister} from 'react-native-event-listeners';
 import {Theme} from './src/theme/theme';
 import ThemeContext from './src/theme/themeContext';
+
 const AppWrapper = () => {
   return (
     <Provider store={store}>
@@ -26,11 +25,12 @@ const App = () => {
 
   useEffect(() => {
     LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+    LogBox.ignoreAllLogs(); //Ignore all log notifications
     const listener = EventRegister.addEventListener('ChangeTheme', data => {
       setDarkMode(data);
     });
     return () => {
+      // @ts-ignore
       EventRegister.removeAllListeners(listener);
     };
   }, [darkMode]);

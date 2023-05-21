@@ -1,5 +1,6 @@
-import {Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import React, {useState} from 'react';
+import {TouchableOpacity} from 'react-native';
+// @ts-ignore
+import React from 'react';
 import styled from 'styled-components/native';
 import {launchImageLibrary, launchCamera} from 'react-native-image-picker';
 

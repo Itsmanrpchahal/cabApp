@@ -8,6 +8,6 @@ export default {
   icLight: require('../assets/images/light.png'),
   icInfo: require('../assets/images/info.png'),
   icMan: require('../assets/images/man.png'),
-  icCirlce : require('../assets/circle/circle.png'),
-  icEmail : require('../assets/email/email.png')
+  icCirlce: require('../assets/circle/circle.png'),
+  icEmail: require('../assets/email/email.png'),
 };

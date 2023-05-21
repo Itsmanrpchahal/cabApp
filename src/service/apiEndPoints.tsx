@@ -1,8 +1,11 @@
-const baseURL = 'https://reqres.in/api/';
+const baseURL = 'https://cabs.jmdcoder.com/api/';
 
 const apiUri = {
   auth: {
-    listApi: 'users',
+    listApi: 'enquiry_list',
+    login: 'login',
+    drivers: 'drivers',
+    addDriver: 'add-drivers',
   },
 };
 
